@@ -15,8 +15,9 @@ def call(){
   stage("SonarQube Analysis"){
       withCredentials([usernamePassword(credentialsId: cred_id, passwordVariable: 'token', usernameVariable: 'user')]) {
         withSonarQubeEnv("SonarQube"){
-          unstash "workspace"
-          try{ unstash "test-results" }catch(ex){}
+          //unstash "workspace"
+          //try{ unstash "test-results" }catch(ex){}
+          
           sh "mkdir -p empty"
           projectKey = "$env.REPO_NAME:$env.BRANCH_NAME".replaceAll("/", "_")
           projectName = "$env.REPO_NAME - $env.BRANCH_NAME"
